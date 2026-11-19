@@ -4,7 +4,7 @@ Control your LIFX lights from the Mac menu bar: whole rooms or single lights, br
 
 lifx-mac-menubar is a [SwiftBar](https://swiftbar.app) plugin. It's free and open source under the MIT License.
 
-<!-- TODO: add a screenshot of the open menu, e.g. docs/menu.png -->
+<img src="docs/menu.png" width="232" alt="The open LIFX menu in the macOS menu bar: All on and All off, then Bedroom, Kitchen, and Living Room with how many lights are on in each, then Refresh, Made by, and About.">
 
 > **Unofficial project.** lifx-mac-menubar is not affiliated with, endorsed by, or supported by LIFX. "LIFX" is a trademark of its owner and is used here only to describe what the plugin works with.
 
