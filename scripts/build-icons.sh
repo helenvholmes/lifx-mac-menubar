@@ -18,7 +18,11 @@ tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
 block="$tmp/block.txt"
 
-echo "# >>> generated icons (scripts/build-icons.sh) — do not edit by hand" > "$block"
+{
+  echo "# >>> generated icons (scripts/build-icons.sh) — do not edit by hand"
+  echo "# shellcheck disable=SC2034  # read indirectly by ic()"
+  echo "{"
+} > "$block"
 for svg in icons/*.svg; do
   name=$(basename "$svg" .svg | tr '-' '_')
   png="$tmp/$name.png"
@@ -30,7 +34,7 @@ for svg in icons/*.svg; do
   fi
   echo "I_$name=\"$(base64 < "$png" | tr -d '\n')\"" >> "$block"
 done
-echo "# <<< generated icons" >> "$block"
+printf '%s\n' "}" "# <<< generated icons" >> "$block"
 
 awk -v bf="$block" '
   /^# >>> generated icons/ { while ((getline line < bf) > 0) print line; skip = 1; next }
