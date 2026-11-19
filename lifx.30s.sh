@@ -24,8 +24,18 @@ API="https://api.lifx.com/v1"
 KEYCHAIN_SERVICE="lifx-token"
 TOKEN=$(security find-generic-password -s "$KEYCHAIN_SERVICE" -w 2>/dev/null)
 
-notify() { # show a notification — through SwiftBar when running in it, so it carries SwiftBar's icon
-  if [ -n "$SWIFTBAR" ] && command -v jq >/dev/null; then
+# Optional helper that shows notifications with a lightbulb icon (scripts/build-notifier.sh).
+# Look for it next to the real script, following the symlink in the plugins folder.
+SELF="${SWIFTBAR_PLUGIN_PATH:-$0}"
+while [ -L "$SELF" ]; do
+  link=$(readlink "$SELF"); case "$link" in /*) SELF="$link" ;; *) SELF="$(dirname "$SELF")/$link" ;; esac
+done
+NOTIFIER="$(cd "$(dirname "$SELF")" && pwd)/build/LIFX Menu Bar.app/Contents/MacOS/lifx-notifier"
+
+notify() { # show a notification: with the helper's icon if it's built, otherwise through SwiftBar
+  if [ -x "$NOTIFIER" ] && "$NOTIFIER" "LIFX" "$1"; then
+    return
+  elif [ -n "$SWIFTBAR" ] && command -v jq >/dev/null; then
     local plugin body
     plugin=$(basename "${SWIFTBAR_PLUGIN_PATH:-$0}"); plugin="${plugin%%.*}"
     body=$(printf '%s' "$1" | jq -sRr @uri)

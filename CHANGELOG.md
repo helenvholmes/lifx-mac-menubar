@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Optional "LIFX Menu Bar" helper app (`scripts/build-notifier.sh`) so notifications show a lightbulb icon instead of SwiftBar's. Without it, notifications still go through SwiftBar.
+
 ## v1.0.0 — 2026-11-18
 
 First public release.

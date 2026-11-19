@@ -44,6 +44,18 @@ That's it. Your rooms appear in the menu within a few seconds.
 
 To change your token later, open the menu, **hold Option (⌥)**, and choose **Change LIFX token…**.
 
+### Optional: lightbulb icon on notifications
+
+macOS shows the icon of the app that sends a notification, so by default the plugin's notifications carry SwiftBar's icon. If you cloned the repo, you can build a tiny helper app that sends them with a lightbulb icon instead. It needs the Xcode command line tools (`xcode-select --install`):
+
+```bash
+./lifx-mac-menubar/scripts/build-notifier.sh
+```
+
+This creates `build/LIFX Menu Bar.app` inside the repo. The plugin finds it by following its symlink, so keep the symlink setup from step 2. The first notification asks you to allow notifications from "LIFX Menu Bar". If the helper is missing or notifications are turned off for it, the plugin goes back to sending them through SwiftBar.
+
+To redraw the icon after changing `icons/lightbulb.svg`, run the script with `--icon`.
+
 ## Customize
 
 Everything is in `lifx.30s.sh` and can be edited in any text editor.
