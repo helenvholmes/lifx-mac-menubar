@@ -101,10 +101,7 @@ The icon images are embedded in the script so the plugin stays a single file. Th
 - **A command didn't work.** Check the notification or `~/Library/Logs/lifx-swiftbar.log` to see what LIFX said.
 - **SwiftBar's own settings are gone from the menu.** This plugin hides them to keep the menu clean. Open the SwiftBar app from Spotlight to reach them, or delete the `swiftbar.hideSwiftBar` line at the top of the script.
 
-## Credits and license
+## Credits
 
-Made by [Helen V. Holmes](https://helenvholmes.com) · [GitHub](https://github.com/helenvholmes)
-
-- Code: [MIT License](LICENSE) © 2026 Helen V. Holmes
 - Icons: [Lucide](https://lucide.dev), [ISC License](LICENSE-LUCIDE), with portions derived from Feather under the MIT License
 - Runs on [SwiftBar](https://swiftbar.app)
